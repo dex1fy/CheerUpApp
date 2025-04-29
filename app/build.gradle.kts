@@ -1,6 +1,10 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    // - это
+    alias(libs.plugins.compose.compiler)
+
 }
 
 android {
@@ -42,7 +46,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     packaging {
         resources {
@@ -64,6 +68,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation(libs.androidx.media3.common.ktx)
+    implementation(libs.androidx.animation.core.lint)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -92,6 +98,28 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:postgrest-kt:2.2.1")
     implementation("io.ktor:ktor-client-okhttp:2.3.7")
 
+
+    // - это
     // Compose
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
+
+    // Навигация
+    implementation("androidx.navigation:navigation-compose:2.8.6")
+
+    // Supabase
+
+    implementation(platform(libs.bom))
+    implementation(libs.postgrest.kt)
+    implementation(libs.auth.kt)
+    implementation(libs.realtime.kt)
+    implementation("io.github.jan-tennert.supabase:gotrue-kt:2.1.0")
+    implementation("io.github.jan-tennert.supabase:postgrest-kt:2.1.0")
+    // Ktor
+    implementation(libs.ktor.client.android)
+
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    implementation(libs.coil.compose)
+
+    implementation ("androidx.compose.material:material-icons-extended:1.6.7")
 }

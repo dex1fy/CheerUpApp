@@ -13,26 +13,31 @@ class SharedPreferenceHelper(private val context: Context) {
 
 
     fun saveStringData(key: String, data: String?) {
-
         val sharedPreferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-
-
         sharedPreferences.edit()
             .putString(key, data)
             .apply()
     }
 
-
     fun getStringData(key: String): String? {
-
         val sharedPreferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-
-
         return sharedPreferences.getString(key, null)
     }
 
-    fun removeKey(key: String) {
+    fun clearPreferences() {
         val sharedPreferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-        sharedPreferences.edit().remove(key).apply()
+        sharedPreferences.edit().clear().apply()
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -25,6 +25,7 @@ class SupabaseAuthViewModel: ViewModel() {
         userPassword: String,
     ) {
         viewModelScope.launch {
+            _userState.value = UserState.Loading
             try {
                 SupabaseClient.client.auth.signUpWith(Email) {
                     email = userEmail
@@ -57,6 +58,7 @@ class SupabaseAuthViewModel: ViewModel() {
         userPassword: String,
     ) {
         viewModelScope.launch {
+            _userState.value = UserState.Loading
             try {
                 SupabaseClient.client.auth.signInWith(Email) {
                     email = userEmail
@@ -71,10 +73,13 @@ class SupabaseAuthViewModel: ViewModel() {
         }
     }
 
-    fun logout() {
+    fun logout(context: Context) {
+        val sharedPref = SharedPreferenceHelper(context)
         viewModelScope.launch {
+            _userState.value = UserState.Loading
             try {
                 SupabaseClient.client.auth.signOut()
+                sharedPref.clearPreferences()
                 _userState.value = UserState.Success("Выход из системы прошел успешно")
             } catch (e: Exception) {
                 _userState.value = UserState.Error("Ошибка: ${e.message}")
