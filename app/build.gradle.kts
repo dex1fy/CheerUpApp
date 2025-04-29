@@ -32,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -74,19 +74,24 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation("io.github.jan-tennert.supabase:gotrue-kt:2.2.1") // Для аутентификации
+    implementation("io.github.jan-tennert.supabase:postgrest-kt:2.2.1")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose-jvmstubs:2.9.0-rc01")
+    // Обязательный HTTP-клиент
+    implementation("io.ktor:ktor-client-okhttp:2.3.7")
 
+    implementation("io.github.jan-tennert.supabase:postgrest-kt:2.2.1") // Для PostgREST API
+    implementation("io.github.jan-tennert.supabase:realtime-kt:2.2.1") // Для Realtime
+    implementation("io.github.jan-tennert.supabase:storage-kt:2.2.1") // Для Storage
+    implementation("io.github.jan-tennert.supabase:functions-kt:2.2.1") // Для Edge Functions
 
+    implementation("io.ktor:ktor-client-okhttp:2.3.7") // HTTP-клиент
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0") // Сериализация
 
+    implementation("io.github.jan-tennert.supabase:gotrue-kt:2.2.1")
+    implementation("io.github.jan-tennert.supabase:postgrest-kt:2.2.1")
+    implementation("io.ktor:ktor-client-okhttp:2.3.7")
 
-        implementation("io.github.jan-tennert.supabase:postgrest-kt:2.2.1") // Для PostgREST API
-        implementation("io.github.jan-tennert.supabase:realtime-kt:2.2.1") // Для Realtime
-        implementation("io.github.jan-tennert.supabase:storage-kt:2.2.1") // Для Storage
-        implementation("io.github.jan-tennert.supabase:functions-kt:2.2.1") // Для Edge Functions
-
-
-        implementation("io.ktor:ktor-client-okhttp:2.3.7") // HTTP-клиент
-        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0") // Сериализация
-
+    // Compose
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 }
